@@ -108,7 +108,7 @@ def custom_remove(input_list, value):
 
     """
     index = -1
-    
+
     for item in input_list:
         index += 1
         if item == value:
@@ -134,7 +134,11 @@ def custom_pop(input_list):
 
     """
 
-    return None
+    popped = input_list[-1]
+
+    input_list[-1:] = []
+
+    return popped
 
 
 def custom_index(input_list, value):
@@ -149,8 +153,14 @@ def custom_index(input_list, value):
         1
 
     """
+    index = 0
 
-    return 0
+    for item in input_list:
+        if item == value: 
+            return index
+        index += 1 
+            
+    return ValueError
 
 
 def custom_count(input_list, value):
@@ -166,7 +176,13 @@ def custom_count(input_list, value):
 
     """
 
-    return 0
+    count = 0 
+
+    for item in input_list: 
+        if item == value: 
+            count += 1
+
+    return count
 
 
 def custom_reverse(input_list):
@@ -184,6 +200,14 @@ def custom_reverse(input_list):
         True
 
     """
+
+    new_list = []
+
+    for index in range(custom_len(input_list)):
+        custom_append(new_list, input_list[-1])
+        custom_pop(input_list)
+
+    input_list[0:] = new_list
 
     pass
 
@@ -205,7 +229,11 @@ def custom_contains(input_list, value):
 
     """
 
-    return None
+    for item in input_list:
+        if item == value: 
+            return True
+
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -224,7 +252,16 @@ def custom_equality(some_list, another_list):
 
     """
 
-    return None
+    if custom_len(some_list) == custom_len(another_list):
+        for index in range(len(some_list)):
+            if some_list[index] == another_list[index]:
+                continue
+            else: 
+                return False
+        return True
+
+    return False
+
 
 
 # This is the part were we actually run the doctests.
